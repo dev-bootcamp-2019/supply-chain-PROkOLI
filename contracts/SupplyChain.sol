@@ -89,6 +89,7 @@ modifier verifyOwner() {require(msg.sender == owner); _;}
     public payable forSale(sku) paidEnough(items[sku].price) checkValue(sku)
   {
       items[sku].buyer = msg.sender;
+      items[sku].seller.transfer(items[sku].price,items[sku].buyer);
       items[sku].state = uint(State.Sold);
       emit Sold(sku);
   }
